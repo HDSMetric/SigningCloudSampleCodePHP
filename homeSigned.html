@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signing Cloud REST API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Vertical navbar -->
+    <div class="vertical-nav bg-white" id="sidebar">
+      <p
+        class="text-black font-weight-bold text-uppercase px-3 small pt-4 mb-0"
+      >
+        Signing Document App
+      </p>
+      <p
+        class="
+          text-gray
+          font-weight-bold
+          text-uppercase
+          px-3
+          small
+          pt-4
+          pb-4
+          mb-0
+        "
+      >
+        Dashboard
+      </p>
+
+      <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+          <a
+            href="home.html"
+            id="documentList"
+            class="nav-link text-dark bg-light"
+          >
+            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            Pending Document List
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="homeSigned.html"
+            id="documentList"
+            class="nav-link text-dark bg-light"
+          >
+            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            Signed Document List
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="uploadDocument.html" class="nav-link text-dark">
+            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+            Upload Document
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="verifyDocument.html" class="nav-link text-dark">
+            <i class="fa fa-file-archive-o mr-3 text-primary fa-fw"></i>
+            Verify Document
+          </a>
+        </li>
+        <p
+          class="
+            text-gray
+            font-weight-bold
+            text-uppercase
+            px-3
+            small
+            pt-4
+            pb-4
+            mb-0
+          "
+        >
+          Settings
+        </p>
+        <li class="nav-item">
+          <a href="storeAPIKey.html" class="nav-link text-dark">
+            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+            Setup API Key
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="uploadSignature.html" class="nav-link text-dark">
+            <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+            Upload Signature
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End vertical navbar -->
+
+    <!-- Toggle button -->
+    <!-- <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+        class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button> -->
+
+    <!-- Page content holder -->
+    <div class="page-content p-5" id="content">
+      <!-- Demo content -->
+      <h2 class="display-4 text-black">Signed Document List</h2>
+      <p class="lead text-black mb-5">
+        Display list of available documents and actions.
+      </p>
+      <!--     <div class="separator"></div> -->
+
+      <div class="container" style="padding-left: 0">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr style="width: 100%">
+                  <th scope="col" style="width: 5%">#</th>
+                  <th scope="col" style="width: 5%">Contract Number</th>
+                  <th scope="col" style="width: 15%">Time Created</th>
+                  <th scope="col" style="width: 5%">Sign Status</th>
+                  <th scope="col" style="width: 5%">Document Status</th>
+                  <th scope="col" colspan="2" style="width: 65%">Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!--    <div class="embed-responsive embed-responsive-1by1">
+      <iframe class="embed-responsive-item" src="https://stg-env.signingcloud.com/signserver/sdkApiserver.action/contractInfo!toViewPage.action?code=833BF24E24F2F39A3133F5E5C668C89032B376D4E3352F743076369B0AEA2FAC9C90A5C75493A8928DD2341CF32368C298C6FEE48139D5D4D689D958C59BAA93E1"></iframe>
+    </div>
+ -->
+    </div>
+    <!-- End demo content -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+
+  <footer>
+    <div class="modal fade" id="viewDocModal">
+      <div class="modal-dialog mw-100 w-100">
+        <div class="modal-content bmd-modalContent">
+          <div class="modal-body">
+            <div class="close-button">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="embed-responsive embed-responsive-1by1">
+              <iframe
+                class="embed-responsive-item w-150"
+                frameborder="1"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+  </footer>
+</html>
+
+<script>
+  var viewDoc = false;
+
+  //window.top.location.href="https://stg-env.signingcloud.com/signserver/sdkApiserver.action/contractInfo!toViewPage.action?code=833BF24E24F2F39A3133F5E5C668C89032B376D4E3352F743076369B0AEA2FAC9C90A5C75493A8928DD2341CF32368C298C6FEE48139D5D4D689D958C59BAA93E1";
+
+  $("#viewDocModal").on("hidden.bs.modal", function () {
+    $("iframe").attr("src", "");
+    if (viewDoc == true) {
+      viewDoc = false;
+    } else {
+      location.reload();
+    }
+  });
+
+  $(window).on("load", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "Controller.php",
+      data: {
+        documentList: "true",
+        signed: "true",
+      },
+      success: function (result) {
+        console.log(result);
+        let obj = JSON.parse(result);
+        obj.forEach((element, index) => {
+          //let contractLogType = element.contractlog[element.contractlog.length - 1].logtype;
+          let signStatus =
+            element.addressee[0].signstate == 0 ? "Not Signed" : "Signed";
+          let createTime = element.createtime;
+          let contractNumber = element.contractnumber;
+          let logType =  element.contractlog[element.contractlog.length - 1] != null? element.contractlog[element.contractlog.length - 1].logtype : "";
+
+          let docStatus = "";
+
+          switch (logType) {
+            case 0:
+              docStatus = "Uploaded";
+              break;
+            case 1:
+              docStatus = "View";
+              break;
+            case 2:
+              docStatus = "Signed";
+              break;
+            case 3:
+              docStatus = "Refused";
+              break;
+            case 4:
+              docStatus = "Closed";
+              break;
+            case 5:
+              docStatus = "Voided";
+              break;
+            case 6:
+              docStatus = "Completed";
+              break;
+            case 7:
+              docStatus = "Expired";
+              break;
+            case 8:
+              docStatus = "Download";
+              break;
+            case 10:
+              docStatus = "Deleted";
+              break;
+            default:
+              docStatus = "-";
+              break;
+          }
+
+          var button = "";
+          button +=
+            '<button type="button" data-toggle="modal"  id="previewDoc" onclick="previewDoc(this);" value="' +
+            contractNumber +
+            '" class="btn btn-primary rounded btn-sm ml-1">View</button>';
+
+          let link = "DocumentDownload.php?contractnum=" + contractNumber;
+
+          // 10 = delete status
+          if (logType == 10) {
+            button +=
+              '<button type="button" id="autoSign" disabled="true" class="btn btn-danger rounded btn-sm ml-1" onclick="deleteDoc(this);" data-contractnum="' +
+              contractNumber +
+              '">Delete</button>';
+            button +=
+              '<button type="button" disabled="true" class="btn btn-danger rounded btn-sm ml-1 px-2">Download</a>';
+          } else {
+            button +=
+              '<button type="button" id="autoSign" class="btn btn-primary rounded btn-sm ml-1 px-2" onclick="deleteDoc(this);" data-contractnum="' +
+              contractNumber +
+              '">Delete</button>';
+            button +=
+              '<a href="' +
+              link +
+              '" class="btn btn-primary rounded btn-sm ml-1">Download</a>';
+          }
+
+          var row =
+            "<tr>" +
+            '<th scope="row">' +
+            index +
+            "</th>" +
+            "<td>" +
+            contractNumber +
+            "</td>" +
+            "<td>" +
+            createTime +
+            "</td>" +
+            "<td>" +
+            signStatus +
+            "</td>" +
+            "<td>" +
+            docStatus +
+            "</td>" +
+            "<td>" +
+            button +
+            "</td>" +
+            "</tr>";
+          $("tbody").append(row);
+        });
+      },
+      error: function (result) {
+        console.log(result);
+      },
+    });
+  });
+
+  function previewDoc(obj) {
+    viewDoc = true;
+    $.ajax({
+      type: "POST",
+      url: "Controller.php",
+      data: {
+        previewDoc: "true",
+        contractnum: $(obj).val(),
+      },
+      success: function (result) {
+        console.log(result);
+        var myWindow = window.open(
+          result,
+          "_blank",
+          "toolbar=no,scrollbars=no,resizable=yes,top=50%,left=50%,width=1400,height=800"
+        );
+        // $("iframe").attr("src", result);
+        // $("iframe").attr("target" , "_top");
+      },
+      error: function (result) {
+        console.log(result);
+      },
+    });
+  }
+
+  function manualSignDoc(obj) {
+    $.ajax({
+      type: "POST",
+      url: "Controller.php",
+      data: {
+        manualSignDoc: "true",
+        contractnum: $(obj).data("contractnum"),
+      },
+      success: function (result) {
+        var myWindow = window.open(
+          result,
+          "_blank",
+          "toolbar=no,scrollbars=no,resizable=yes,top=50%,left=50%,width=1400,height=800"
+        );
+      },
+      error: function (result) {
+        console.log(result);
+      },
+    });
+  }
+
+  function refreshParent() {
+    window.opener.location.reload(true);
+  }
+
+  function autoSignDoc(obj) {
+    $.ajax({
+      type: "POST",
+      url: "Controller.php",
+      data: {
+        autoSignDoc: "true",
+        contractnum: $(obj).data("contractnum"),
+      },
+      success: function (result) {
+        if (result == "200") {
+          alert("Auto Sign Success");
+          location.reload();
+        }
+      },
+      error: function (result) {
+        console.log(result);
+      },
+    });
+  }
+
+  function deleteDoc(obj) {
+    $.ajax({
+      type: "POST",
+      url: "Controller.php",
+      data: {
+        deleteDoc: "true",
+        contractnum: $(obj).data("contractnum"),
+      },
+      success: function (result) {
+        console.log(result);
+        if (result == "200") {
+          alert("Deleted Successfully");
+          location.reload();
+        }
+      },
+      error: function (result) {
+        console.log(result);
+      },
+    });
+  }
+</script>
