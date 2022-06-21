@@ -16,20 +16,17 @@ class AutoSignDocument
     {
         $apiKey = $_SESSION['apiKey'];
         $apiSecret = $_SESSION['apiSecret'];
-
+        $email = $_SESSION['email'];
         $contractNumber = $_POST['contractnum'];
-
+        $name = $_SESSION['name'];
         $jsonData = array(
             'signerInfo' =>
             array(
-                // 'idcardnum' => '961008105855',
-                'name' => 'Teo Jia Han',
-                'email' => 'gs58330@student.upm.edu.my',
-                'verifycode' => "" ,
+                'email' => $email,
+                'name' => $name,
                 'signkeyword' => 'Sign'
             ),
             'contractnum' => $contractNumber,
-            // 'callUrl' => '',
         );
 
         // 'callUrl' => 'https://demo.securemetric.com:447/apicallback',
@@ -48,7 +45,7 @@ class AutoSignDocument
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, null);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -57,7 +54,6 @@ class AutoSignDocument
         $result = curl_exec($ch);
         curl_close($ch);
         $obj = json_decode($result);
-
 
         if ($obj->{'result'} == 0) {
             echo "200";

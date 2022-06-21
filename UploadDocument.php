@@ -19,15 +19,17 @@ class UploadDocument
 
         $email = $_POST['email'];
         $name = $_POST['name'];
+        $_SESSION['name'] = $name;
         $file = $_FILES['file']['tmp_name'];
         $filename =$_FILES['file']['name'];
+        $str_arr = explode (".", $filename); 
 
         $cfile = curl_file_create( $file, 'application/pdf');
         $uploadFileHash = hash_file("sha256", $file);
 
         $jsonData = array(
             'uploadFileHash' => $uploadFileHash,
-            'type' => 'pdf',
+            'type' => $str_arr[1],
             'contractInfo' =>
             array(
                 'contractnum' => '',

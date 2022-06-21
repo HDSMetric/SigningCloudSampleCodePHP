@@ -18,8 +18,7 @@ class ManualSignDocument
         $apiSecret = $_SESSION['apiSecret'];
 
         $email = $_SESSION['email'];
-        //$contractNumber = $_POST['contractnum'];
-        $contractNumber = '26CF454AD2C9DC21B5CE9650C3CB00E0';
+        $contractNumber = $_POST['contractnum'];
         
         if (!empty($email) && !empty($contractNumber)) {
             $jsonData = array(
@@ -40,11 +39,9 @@ class ManualSignDocument
             $mac = hash('sha256', $data . $apiSecret);
 
             $url = $_SESSION["url"] . '/signserver/v1/contract/signature/manual?accesstoken='. $_SESSION["accessToken"] . "&data=" . $data . "&mac=" . $mac;
-            //$url = 'https://stg-env.signingcloud.com/signserver/v1/contract/signature/manual?accesstoken='. $_SESSION["accessToken"] . "&data=" . $data . "&mac=" . $mac;
-            //echo $url;
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch,CURLOPT_POSTFIELDS, null);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, null);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
