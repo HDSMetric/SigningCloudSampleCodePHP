@@ -20,17 +20,12 @@ class DocumentList
         $startIndex = "0";
         $pageSize = "0";
         $rDetail = "2";
-        // $contractState = "1";
-        $date = "2021-06-09";
-        $signstate = 0;
 
         $jsonData = array(
             'startIndex' => $startIndex ,
             'pageSize' => $pageSize ,
             'rDetail' => $rDetail ,
-            'contractState' => $contractState,
-            'date' => true,
-            // 'first name' => 'rich'
+            'contractState' => $contractState
         );
 
         $jsonDataEncoded = json_encode($jsonData);
@@ -45,6 +40,7 @@ class DocumentList
         //GET request
         $url = $_SESSION["url"] . '/signserver/v1/contract/list?accesstoken=' . $_SESSION['accessToken'] . "&data=" . $data . "&mac=" . $mac;
         $ch = curl_init($url);
+        
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -52,10 +48,8 @@ class DocumentList
 
         $result = curl_exec($ch);
         curl_close($ch);
-
         $obj = json_decode($result);
 
-        // echo var_dump($obj);
         if ($obj->{'result'} == 0) {
             $data = $obj->{'data'};
             $mac = $obj->{'mac'};
@@ -71,10 +65,8 @@ class DocumentList
                     $data = base64_encode($data);
 
                     $original_plaintext = openssl_decrypt($data, "aes-256-ecb", $key, $options = 0, $iv = "");
-                    //print_r($original_plaintext);
                     $obj = json_decode($original_plaintext);
                     $contractList = $obj->{'contractList'};
-                    // print_r ($contractList);
                      echo json_encode($contractList);
                 }
             }
