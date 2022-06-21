@@ -24,7 +24,7 @@ class AutoSignDocument
             array(
                 'email' => $email,
                 'name' => $name,
-                'signkeyword' => 'Sign'
+                'signkeyword' => 'Sign#1234'
             ),
             'contractnum' => $contractNumber,
         );
